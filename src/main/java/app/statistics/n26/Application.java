@@ -24,7 +24,7 @@ public class Application {
      * @param args
      */
     public static void main(String[] args) {
-        LOGGER.debug("Starting Statistics application {}");
+        LOGGER.debug("Starting  {}","Statistics application");
         SpringApplication.run(Application.class, args);
     }
 

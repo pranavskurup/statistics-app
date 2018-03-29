@@ -40,7 +40,8 @@ public class ValidAmountConstraint implements ConstraintValidator<ValidAmount, D
 
     /**
      * Constraint validation is done here for amount field
-     * @param amount {@link Double}
+     *
+     * @param amount  {@link Double}
      * @param context {@link ConstraintValidatorContext}
      * @return
      */
@@ -49,7 +50,7 @@ public class ValidAmountConstraint implements ConstraintValidator<ValidAmount, D
         boolean flag = false;
         context.disableDefaultConstraintViolation();
         if (null == amount) {
-            LOGGER.debug("amount passed is null will skip this transaction {}");
+            LOGGER.debug("amount passed is {} will skip this transaction ", "null");
             context.buildConstraintViolationWithTemplate("Amount is null or empty").addConstraintViolation();
         } else if (amount < lowerLimit) {
             LOGGER.debug("amount passed {} is less than limit {}", amount, lowerLimit);

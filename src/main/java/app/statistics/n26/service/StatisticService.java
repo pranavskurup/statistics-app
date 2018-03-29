@@ -36,7 +36,7 @@ public class StatisticService {
      * @return
      */
     public Mono<Boolean> addTransaction(Publisher<Transaction> transactionPublisher, long now) {
-        LOGGER.debug("Add transaction to statistics store if valid  {}");
+        LOGGER.debug("Add transaction to statistics store if valid before {} ",now);
         return store.save(Mono.from(transactionPublisher), now);
     }
 

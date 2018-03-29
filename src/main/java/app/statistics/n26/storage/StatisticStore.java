@@ -41,7 +41,7 @@ public class StatisticStore extends ConcurrentHashMap<Long, Statistics> implemen
      */
     @Override
     public Mono<Boolean> save(Mono<Transaction> transactionPublish, long now) {
-        LOGGER.debug("Saving transaction if valid  {}");
+        LOGGER.debug("Saving transaction if valid  before {}",now);
         return transactionPublish.map(transaction ->
                 {
                     Long timestamp = transaction.getTimestamp();
@@ -65,7 +65,7 @@ public class StatisticStore extends ConcurrentHashMap<Long, Statistics> implemen
      */
     @Override
     public Mono<Statistics> fetchStatistics(long now) {
-        LOGGER.debug("Fetch statistic record from store  {}");
+        LOGGER.debug("Fetch statistic record from store, store size  {}", size());
         return Mono.just(entrySet().stream()
                 .filter(entry -> !genericService.tooOld(entry.getKey(), now) && entry.getKey() <= now)
                 .flatMap(entry -> Stream.of(entry.getValue()))
@@ -75,7 +75,7 @@ public class StatisticStore extends ConcurrentHashMap<Long, Statistics> implemen
     @Scheduled(fixedDelay = 120000)
     @Override
     public void cleanUp() {
-        LOGGER.debug("Cleaning old statistics details  {}");
+        LOGGER.debug("Cleaning old statistics details every  {}", "120s");
         long now = utcClock.millis();
         Set<Long> old = keySet().stream().filter(key -> genericService.tooOld(key, now)).collect(Collectors.toSet());
         old.forEach(this::remove);

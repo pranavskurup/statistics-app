@@ -52,7 +52,7 @@ public class ValidTimestampConstraint implements ConstraintValidator<ValidTimest
         boolean flag = false;
         context.disableDefaultConstraintViolation();
         if (null == timestamp) {
-            LOGGER.debug("Timestamp passed is null will skip this transaction  {}");
+            LOGGER.debug("Timestamp passed is {} will skip this transaction ", "null");
             context.buildConstraintViolationWithTemplate("Timestamp is null or empty").addConstraintViolation();
         } else if (genericService.tooOld(timestamp, utcClock.millis())) {
             LOGGER.debug("Timestamp passed is {} expired , current timestamp is {}", timestamp, utcClock.millis());

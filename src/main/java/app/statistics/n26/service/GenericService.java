@@ -11,10 +11,9 @@ import java.lang.invoke.MethodHandles;
 
 /**
  * Created by Pranav S Kurup on 3/28/2018.
- *
+ * <p>
  * {@link GenericService} provide methods to calculate transaction validity
  * and generate statistics from an individual transaction
- *
  */
 @Component
 public class GenericService {
@@ -29,7 +28,7 @@ public class GenericService {
      * Compares timeStamp with now to determine whether transaction is expired or not
      *
      * @param timeStamp long transaction timestamp
-     * @param now  long currrent time
+     * @param now       long currrent time
      * @return status boolean
      */
     public boolean tooOld(final long timeStamp, final long now) {
@@ -40,11 +39,12 @@ public class GenericService {
 
     /**
      * Converts indivifual transaction into statistics
+     *
      * @param transaction {@link Transaction}
      * @return statistics {@link Statistics}
      */
     public Statistics getStatisticsFromTransaction(Transaction transaction) {
-        LOGGER.debug("Generate statistic data for individual transaction  {}");
+        LOGGER.debug("Generate statistic data for individual transaction {}", transaction);
         return Statistics.builder().count(1).sum(transaction.getAmount()).max(transaction.getAmount()).min(transaction.getAmount()).build();
     }
 }
