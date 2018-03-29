@@ -1,0 +1,9 @@
+app:
+  statistics:
+    time:
+      time-unit: seconds
+      limit: 60
+    transaction:
+      lower-limit: 0
+server:
+  port: 5050
