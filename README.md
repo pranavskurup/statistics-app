@@ -88,3 +88,6 @@ Other requirements, which are obvious, but also listed here explicitly:
 * The API should be able to deal with time discrepancy, which means, at any point of time, we could receive a transaction which have a timestamp of the past
 * Make sure to send the case in memory solution without database (including in-memory database)
 * Endpoints have to execute in constant time and memory (O(1))
+
+
+[Solution](SOLUTION.md)
