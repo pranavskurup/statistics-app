@@ -49,7 +49,7 @@ public class ValidAmountConstraint implements ConstraintValidator<ValidAmount, D
         boolean flag = false;
         context.disableDefaultConstraintViolation();
         if (null == amount) {
-            LOGGER.debug("amount passed is null will skip this transaction");
+            LOGGER.debug("amount passed is null will skip this transaction {}");
             context.buildConstraintViolationWithTemplate("Amount is null or empty").addConstraintViolation();
         } else if (amount < lowerLimit) {
             LOGGER.debug("amount passed {} is less than limit {}", amount, lowerLimit);

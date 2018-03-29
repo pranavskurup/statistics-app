@@ -44,7 +44,7 @@ public class GenericService {
      * @return statistics {@link Statistics}
      */
     public Statistics getStatisticsFromTransaction(Transaction transaction) {
-        LOGGER.debug("Generate statistic data for individual transaction");
+        LOGGER.debug("Generate statistic data for individual transaction  {}");
         return Statistics.builder().count(1).sum(transaction.getAmount()).max(transaction.getAmount()).min(transaction.getAmount()).build();
     }
 }
