@@ -112,17 +112,13 @@ Cucumber is used to implement BDD
 
 
 ## Sonar
-### JUnit Test cases
-You can find unit test cases under package *app.statistics.n26.models* 
-Test cases are written using JUnit to test functionality of methods in classes
-
-### Behavior Driven Test Cases Test cases
-You can find *Behavior Driven Test(BDD)* cases under package *bdd* and feature files under test resources
-
-Cucumber is used to implement BDD
-
-### Code coverage
-[![Awesome](screenshots/TestCoverage.JPG)](screenshots/TestCoverage.JPG)
-
 ### Sonar Code coverage
 [![Awesome](screenshots/sonar_code_coverage.JPG)](screenshots/sonar_code_coverage.JPG)
+
+* 58.0 Test coverage (Spring configurarion classes and model classes are reason for low coverage percentage)
+* Overall 45 test cases are their.
+* 0 bugs
+* 0 Vulnerablities
+* 0 debt
+* 0 Code smells
+* 0% Code duplication
