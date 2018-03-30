@@ -1,9 +1,6 @@
 package app.statistics.n26.config;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -17,7 +14,9 @@ import java.util.concurrent.TimeUnit;
  * <p>
  * Application specific properties are loaded here
  */
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @ToString
 @ConfigurationProperties(prefix = "app.statistics")
 public class AppProperties {
@@ -50,7 +49,11 @@ public class AppProperties {
         return this.time;
     }
 
-    @Data
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @ToString
     public class TimeLimit {
 
         /**
@@ -71,7 +74,11 @@ public class AppProperties {
         private Long duration;
     }
 
-    @Data
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @ToString
     public class TransactionLimit {
         /**
          * lowerLimit is the minimum amount that can be added in a transaction
