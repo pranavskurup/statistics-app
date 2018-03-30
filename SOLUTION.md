@@ -133,7 +133,7 @@ mvn clean verify -P integration-test
 
 ### Code coverage
 Intellij Idea Code Coverage
-[(screenshots/TestCoverage.JPG)](screenshots/TestCoverage.JPG)
+[![Coverage screenshot](screenshots/TestCoverage.JPG)](screenshots/TestCoverage.JPG)
 
 * Covered 100.0% classes
 * Covered 94% lines
@@ -141,7 +141,7 @@ Intellij Idea Code Coverage
 
 ## Sonar
 ### Sonar Code coverage
-[(screenshots/sonar_code_coverage.JPG)](screenshots/sonar_code_coverage.JPG)
+[![Coverage screenshot](screenshots/sonar_code_coverage.JPG)](screenshots/sonar_code_coverage.JPG)
 
 * 86.8 Test coverage 
 * Overall 21 unit test cases.
