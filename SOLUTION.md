@@ -10,10 +10,10 @@
 * Spring Boot 2.0.0.RELEASE
 * Cucumber 1.2.5'
 
-## Configuraions available
+## Configurations available
 
 ### Configure time limit to store statistics
-In application.yml add following entry
+In application.yml add following entry 
 ```yaml
 ---
 app:
@@ -23,7 +23,7 @@ app:
       limit: 60
 ```
 * *time-unit* represent unit of time to be used(*hours*|*seconds*|*minutes*|*milliseconds*)
-* *limit* numeric value to specify durartion
+* *limit* numeric value to specify duration
 ### Configure amount limit to store statistics
 In application.yml add following entry
 ```yaml
@@ -39,7 +39,7 @@ app:
 
 ### Transaction Endpoint
 
-Request body validation prevents adding of transaction if amount is below *0* or timestamp expired (older than *60 seconds*)
+Request body validation prevents adding of transaction if amount is below *0* or timestamp expires (older than *60 seconds*)
 
 ```http
 POST /transactions
@@ -95,15 +95,15 @@ Exposed by *app.statistics.n26.controller.StatisticController* controller.
 
 ## Storage
 
-storing of statistics data is done by class *app.statistics.n26.storage.StatisticStore*. It internally uses *java.util.concurrent.ConcurrentHashMap* to store data.
+Storing of statistics data is done by class *app.statistics.n26.storage.StatisticStore*. It internally uses *java.util.concurrent.ConcurrentHashMap* to store data.
 
 ## Test cases
 ### JUnit Test cases
-You can find unit test cases under package *app.statistics.n26.models* 
-Test cases are written using JUnit to test functionality of methods in classes
+You can find unit test cases under package *app.statistics.n26.models* .
+Test cases are written using JUnit to test functionality of methods in classes.
 
-### Behavior Driven Test Cases Test cases
-You can find *Behavior Driven Test(BDD)* cases under package *bdd* and feature files under test resources
+### Behavior-driven development Test cases
+You can find *Behavior-driven development(BDD)* cases under package *bdd* and feature files under test resources
 
 Cucumber is used to implement BDD
 
@@ -116,9 +116,8 @@ Cucumber is used to implement BDD
 [![Awesome](screenshots/sonar_code_coverage.JPG)](screenshots/sonar_code_coverage.JPG)
 
 * 58.0 Test coverage (Spring configurarion classes and model classes are reason for low coverage percentage)
-* Overall 45 test cases are their.
-* 0 bugs
-* 0 Vulnerablities
-* 0 debt
-* 0 Code smells
-* 0% Code duplication
+* Overall 45 test cases.
+* **ZERO** bugs
+* **ZERO** Vulnerablities
+* **ZERO** Code smells
+* **ZERO** Code duplication

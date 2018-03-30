@@ -6,10 +6,10 @@ calculate realtime statistic from the last 60 seconds. There will be two APIs, o
 called every time a transaction is made. It is also the sole input of this rest API. The other one
 returns the statistic based of the transactions of the last 60 seconds.
 
-## Requirement:
+## Requirements:
 
 ### Transactions endpoint
-Every Time a new transaction happened, this endpoint will be called.
+Everytime when a new transaction happens, this endpoint will be called.
 
 ```http
 POST /transactions
@@ -34,7 +34,7 @@ timestamp)
 ```http
 HTTP/1.1 201 Created
 ```
-##### Error response sample - timestamp is older than 60 seconds
+##### Error response sample - If timestamp is older than 60 seconds.
 
 ```http
 HTTP/1.1 204 No Content
