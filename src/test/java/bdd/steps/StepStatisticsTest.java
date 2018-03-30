@@ -1,4 +1,4 @@
-package bdd;
+package bdd.steps;
 
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Then;

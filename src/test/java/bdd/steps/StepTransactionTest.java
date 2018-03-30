@@ -1,4 +1,4 @@
-package bdd;
+package bdd.steps;
 
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Then;
@@ -93,7 +93,7 @@ public class StepTransactionTest {
         headers.setContentType(MediaType.APPLICATION_JSON);
         Map<String, Object> body = new HashMap<>();
         body.put("amount", 50);
-        body.put("timestamp", Clock.systemUTC().millis() - 90000);
+        body.put("timestamp", Clock.systemUTC().millis() - 90000000);
         HttpEntity<?> entity = new HttpEntity<>(body, headers);
         try {
             exchangeResponse = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);

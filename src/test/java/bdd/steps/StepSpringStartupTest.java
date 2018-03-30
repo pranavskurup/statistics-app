@@ -1,4 +1,4 @@
-package bdd;
+package bdd.steps;
 
 import app.statistics.n26.Application;
 import cucumber.api.java.After;
@@ -6,14 +6,23 @@ import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import cucumber.runtime.java.StepDefAnnotation;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Assert;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.boot.web.reactive.context.AnnotationConfigReactiveWebApplicationContext;
+import org.springframework.context.ApplicationListener;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.event.ContextStartedEvent;
 import org.springframework.http.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.concurrent.CountDownLatch;
 
 /**
  * Created by Pranav S Kurup on 3/29/2018.
@@ -34,8 +43,15 @@ public class StepSpringStartupTest {
         SpringApplicationBuilder appBuilder =
                 new
                         SpringApplicationBuilder()
-                        .sources(Application.class);
+                        .sources(Application.class, SpringTestConfig.class);
         applicationContext = appBuilder.run();
+        applicationContext.start();
+       /* applicationContext=new AnnotationConfigReactiveWebApplicationContext();
+        applicationContext.register(Application.class, SpringTestConfig.class);
+        applicationContext.refresh();*/
+        System.out.println();
+      CountDownLatch countDownLatch = applicationContext.getBean(CountDownLatch.class);
+      countDownLatch.await();
     }
 
 
@@ -75,6 +91,33 @@ public class StepSpringStartupTest {
         if (null != applicationContext) {
             applicationContext.close();
             applicationContext = null;
+        }
+    }
+
+    @TestConfiguration
+    @SpringBootTest
+    public static class SpringTestConfig {
+        @Bean
+        CountDownLatch countDownLatch() {
+            return new CountDownLatch(1);
+        }
+
+        @Bean
+        ApplicationListener<ContextStartedEvent> springApplicationRunListener() {
+            return new ApplicationStartedListener(countDownLatch());
+        }
+
+        public static class ApplicationStartedListener implements ApplicationListener<ContextStartedEvent> {
+            private final CountDownLatch countDownLatch;
+
+            public ApplicationStartedListener(CountDownLatch countDownLatch) {
+                this.countDownLatch = countDownLatch;
+            }
+
+            @Override
+            public void onApplicationEvent(ContextStartedEvent contextStartedEvent) {
+                countDownLatch.countDown();
+            }
         }
     }
 }

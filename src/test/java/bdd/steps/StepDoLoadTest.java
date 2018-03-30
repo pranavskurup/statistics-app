@@ -1,4 +1,4 @@
-package bdd;
+package bdd.steps;
 
 import app.statistics.n26.models.Transaction;
 import cucumber.api.java.Before;
