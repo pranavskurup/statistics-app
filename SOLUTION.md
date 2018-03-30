@@ -131,15 +131,15 @@ mvn clean verify -P integration-test
 
 **Coverage Html Report:** target/site/jacoco-it/index.html
 
-### Code coverage
-Intellij Idea Code Coverage
+## Code Coverage
+
+### Intellij Idea Code Coverage
+
 [![Coverage screenshot](screenshots/TestCoverage.JPG)](screenshots/TestCoverage.JPG)
 
 * Covered 100.0% classes
 * Covered 94% lines
 
-
-## Sonar
 ### Sonar Code coverage
 [![Coverage screenshot](screenshots/sonar_code_coverage.JPG)](screenshots/sonar_code_coverage.JPG)
 
