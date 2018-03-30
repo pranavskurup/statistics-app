@@ -98,25 +98,54 @@ Exposed by *app.statistics.n26.controller.StatisticController* controller.
 Storing of statistics data is done by class *app.statistics.n26.storage.StatisticStore*. It internally uses *java.util.concurrent.ConcurrentHashMap* to store data.
 
 ## Test cases
+####To run all test cases please run:
+~~~shell
+mvn clean verify -P all-test
+~~~
+
 ### JUnit Test cases
 You can find unit test cases under package *app.statistics.n26.models* .
 Test cases are written using JUnit to test functionality of methods in classes.
+
+####To run unit test cases please run:
+~~~shell
+mvn clean test
+~~~
+**Coverage Report:** target/coverage-reports/jacoco-ut.exec
+
+**Surefire reports** target/surefire-reports 
+
+**Coverage Html Report:** target/jacoco-ut/index.html
 
 ### Behavior-driven development Test cases
 You can find *Behavior-driven development(BDD)* cases under package *bdd* and feature files under test resources
 
 Cucumber is used to implement BDD
+####To run BDD test cases please run:
+~~~shell
+mvn clean verify -P integration-test
+~~~
+**Coverage Report:** target/coverage-reports/jacoco-ut.exec
+
+**Failsafe reports** target/failsafe-reports
+
+**Coverage Html Report:** target/site/jacoco-it/index.html
 
 ### Code coverage
-[![Awesome](screenshots/TestCoverage.JPG)](screenshots/TestCoverage.JPG)
+Intellij Idea Code Coverage
+[(screenshots/TestCoverage.JPG)](screenshots/TestCoverage.JPG)
+
+* Covered 100.0% classes
+* Covered 94% lines
 
 
 ## Sonar
 ### Sonar Code coverage
-[![Awesome](screenshots/sonar_code_coverage.JPG)](screenshots/sonar_code_coverage.JPG)
+[(screenshots/sonar_code_coverage.JPG)](screenshots/sonar_code_coverage.JPG)
 
-* 58.0 Test coverage (Spring configurarion classes and model classes are reason for low coverage percentage)
-* Overall 45 test cases.
+* 86.8 Test coverage 
+* Overall 21 unit test cases.
+* Overall 34 BDD cases.
 * **ZERO** bugs
 * **ZERO** Vulnerablities
 * **ZERO** Code smells
