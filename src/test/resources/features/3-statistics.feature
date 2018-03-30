@@ -1,4 +1,4 @@
-@auto
+@auto @statistics
 Feature: Check statistics endpoint works fine
   Scenario: Check statistics endpoint
     Given Start statistics application

@@ -1,4 +1,4 @@
-@auto
+@auto @startuptest
 Feature: Check whether application starts without any error
   Scenario: Start application and run health check
     Given Start statistics application

@@ -1,4 +1,4 @@
-@auto
+@auto @transaction
 Feature: Check transaction endpoint works fine
   Scenario: Check transaction endpoint
     Given Start statistics application
