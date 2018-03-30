@@ -1,0 +1,8 @@
+---
+app:
+  statistics:
+    time:
+      time-unit: hours
+      limit: 1
+    transaction:
+      lower-limit: -5
