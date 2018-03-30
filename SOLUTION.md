@@ -22,8 +22,8 @@ app:
       time-unit: seconds
       limit: 60
 ```
-* *time-unit* represent unit of time to be used(*hours*|*seconds*|*minutes*|*milliseconds*)
-* *limit* numeric value to specify duration
+* **time-unit** represent unit of time to be used(*hours*|*seconds*|*minutes*|*milliseconds*)
+* **limit** numeric value to specify duration
 ### Configure amount limit to store statistics
 In application.yml add following entry
 ```yaml
@@ -33,7 +33,7 @@ app:
     transaction:
       lower-limit: 0
 ```
-* *lower-limit* numeric value used to specify minimum value of amount in  transaction.
+* **lower-limit** numeric value used to specify minimum value of amount in  transaction.
 
 ## API
 
