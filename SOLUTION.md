@@ -98,7 +98,7 @@ Exposed by *app.statistics.n26.controller.StatisticController* controller.
 Storing of statistics data is done by class *app.statistics.n26.storage.StatisticStore*. It internally uses *java.util.concurrent.ConcurrentHashMap* to store data.
 
 ## Test cases
-####To run all test cases please run:
+#### To run all test cases please run:
 ~~~shell
 mvn clean verify -P all-test
 ~~~
@@ -107,7 +107,7 @@ mvn clean verify -P all-test
 You can find unit test cases under package *app.statistics.n26.models* .
 Test cases are written using JUnit to test functionality of methods in classes.
 
-####To run unit test cases please run:
+#### To run unit test cases please run:
 ~~~shell
 mvn clean test
 ~~~
@@ -121,7 +121,7 @@ mvn clean test
 You can find *Behavior-driven development(BDD)* cases under package *bdd* and feature files under test resources
 
 Cucumber is used to implement BDD
-####To run BDD test cases please run:
+#### To run BDD test cases please run:
 ~~~shell
 mvn clean verify -P integration-test
 ~~~
