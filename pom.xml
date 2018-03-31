@@ -272,8 +272,11 @@
                             -->
                             <skipTests>${skip.integration.tests}</skipTests>
                             <includes>
-                                <include>**/BDD**</include>
+                                <include>**/BDDAuto**</include>
                             </includes>
+                            <excludes>
+                                <include>**/BDDManual**</include>
+                            </excludes>
                         </configuration>
                     </execution>
                 </executions>
