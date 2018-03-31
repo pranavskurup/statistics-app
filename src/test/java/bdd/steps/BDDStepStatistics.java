@@ -17,7 +17,7 @@ import java.util.stream.Stream;
 /**
  * Created by Pranav S Kurup on 3/29/2018.
  */
-public class StepStatisticsTest {
+public class BDDStepStatistics {
     private ResponseEntity<String> exchangeResponse;
     private HttpClientErrorException httpClientErrorException;
     private RestTemplate restTemplate;

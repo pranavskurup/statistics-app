@@ -18,7 +18,7 @@ import java.util.stream.Stream;
 /**
  * Created by Pranav S Kurup on 3/29/2018.
  */
-public class StepTransactionTest {
+public class BDDStepTransaction {
     private ResponseEntity<String> exchangeResponse;
     private HttpClientErrorException httpClientErrorException;
     private RestTemplate restTemplate;

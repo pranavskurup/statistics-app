@@ -27,7 +27,7 @@ import java.util.concurrent.CountDownLatch;
 /**
  * Created by Pranav S Kurup on 3/29/2018.
  */
-public class StepSpringStartupTest {
+public class BDDStepSpringStartup {
     ConfigurableApplicationContext applicationContext = null;
     private ResponseEntity<String> exchangeResponse;
     private HttpClientErrorException httpClientErrorException;

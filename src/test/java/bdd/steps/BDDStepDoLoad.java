@@ -23,7 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Created by Pranav S Kurup on 3/29/2018.
  */
-public class StepDoLoadTest {
+public class BDDStepDoLoad {
     private WebTestClient client;
 
     @Before

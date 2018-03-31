@@ -244,8 +244,7 @@
                     <!-- Skips unit tests if the value of skip.unit.tests property is true -->
                     <skipTests>${skip.unit.tests}</skipTests>
                     <excludes>
-                        <exclude>**/IT*.java</exclude>
-                        <exclude>**/*BDDTest.java</exclude>
+                        <exclude>**/BDD**.java</exclude>
                     </excludes>
                 </configuration>
             </plugin>
@@ -272,6 +271,9 @@
                                 is true
                             -->
                             <skipTests>${skip.integration.tests}</skipTests>
+                            <includes>
+                                <include>**/BDD**</include>
+                            </includes>
                         </configuration>
                     </execution>
                 </executions>
