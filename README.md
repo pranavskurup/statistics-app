@@ -1,20 +1,51 @@
-# statistics-app 
-[Solution](SOLUTION.md)
+# [Question](QUESTION.md)
+# Solution
 
-We would like to have a restful API for our statistics. The main use case for our API is to
-calculate realtime statistic from the last 60 seconds. There will be two APIs, one of them is
-called every time a transaction is made. It is also the sole input of this rest API. The other one
-returns the statistic based of the transactions of the last 60 seconds.
 
-## Requirements:
+## Technologies
+### Language
+*   Java 1.8
+### Build Tool
+*   Maven 3.5
+### Frameworks Used
+* Spring Boot 2.0.0.RELEASE
+* Cucumber 1.2.5'
 
-### Transactions endpoint
-Everytime when a new transaction happens, this endpoint will be called.
+## Configurations available
+
+### Configure time limit to store statistics
+In application.yml add following entry 
+```yaml
+---
+app:
+  statistics:
+    time:
+      time-unit: seconds
+      limit: 60
+```
+* **time-unit** represent unit of time to be used(*hours*|*seconds*|*minutes*|*milliseconds*)
+* **limit** numeric value to specify duration
+### Configure amount limit to store statistics
+In application.yml add following entry
+```yaml
+---
+app:
+  statistics:
+    transaction:
+      lower-limit: 0
+```
+* **lower-limit** numeric value used to specify minimum value of amount in  transaction.
+
+## API
+
+### Transaction Endpoint
+
+Request body validation prevents adding of transaction if amount is below *0* or timestamp expires (older than *60 seconds*)
 
 ```http
 POST /transactions
 ```
-#### Request:
+### Request:
 ```http
 POST /api/transactions HTTP/1.1
 Content-Type: application/json;charset=UTF-8
@@ -24,36 +55,30 @@ Content-Type: application/json;charset=UTF-8
     "timestamp": 1478192204000
 }
 ```
-#### Conditions
-* *amount* - transaction amount
-* *timestamp* - transaction time in epoch in millis in UTC time zone (this is not current
-timestamp)
-
-#### Response
-##### Success response sample
+### Response
+#### Success response sample
 ```http
 HTTP/1.1 201 Created
 ```
-##### Error response sample - If timestamp is older than 60 seconds.
+#### Error response sample - timestamp is older than 60 seconds
 
 ```http
 HTTP/1.1 204 No Content
 ```
 
-### Statistics Endpoint
-This is the main endpoint of this task, this endpoint have to execute in constant time and memory (O(1)). It returns the statistic based on the transactions which happened in the last 60 seconds.
+Exposed by *app.statistics.n26.controller.TransactionController* controller.
 
+### Statistics Endpoint
 ```http
 GET /statistics
 ```
-#### Request:
+### Request:
 ```http
 GET /api/statistics HTTP/1.1
 Accept: application/json;charset=UTF-8
 ```
 
-#### Response Body:
-
+### Response
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
@@ -67,29 +92,63 @@ Content-Type: application/json;charset=UTF-8
 }
 ```
 
-#### Conditions
-* *sum* is a double specifying the total sum of transaction value in the last 60 seconds
-* *avg* is a double specifying the average amount of transaction value in the last 60
-seconds
-* *max* is a double specifying single highest transaction value in the last 60 seconds
-* *min* is a double specifying single lowest transaction value in the last 60 seconds
-* *count* is a long specifying the total number of transactions happened in the last 60
-seconds
+Exposed by *app.statistics.n26.controller.StatisticController* controller.
 
+## Storage
 
-## Requirements
-For the rest api, the biggest and maybe hardest requirement is to make the GET
-/statistics execute in constant time and space. The best solution would be O(1). It is
-very recommended to tackle the O(1) requirement as the last thing to do as it is not
-the only thing which will be rated in the code challenge.
+Storing of statistics data is done by class *app.statistics.n26.storage.StatisticStore*. It internally uses *java.util.concurrent.ConcurrentHashMap* to store data.
 
-Other requirements, which are obvious, but also listed here explicitly:
-* The API have to be threadsafe with concurrent requests
-* The API have to function properly, with proper result
-* The project should be buildable, and tests should also complete successfully. e.g. If maven is used, then mvn clean install should complete successfully.
-* The API should be able to deal with time discrepancy, which means, at any point of time, we could receive a transaction which have a timestamp of the past
-* Make sure to send the case in memory solution without database (including in-memory database)
-* Endpoints have to execute in constant time and memory (O(1))
+## Test cases
+#### To run all test cases please run:
+~~~shell
+mvn clean verify -P all-test
+~~~
 
+### JUnit Test cases
+You can find unit test cases under package *app.statistics.n26.models* .
+Test cases are written using JUnit to test functionality of methods in classes.
 
-[Solution](SOLUTION.md)
+#### To run unit test cases please run:
+~~~shell
+mvn clean test
+~~~
+**Coverage Report:** target/coverage-reports/jacoco-ut.exec
+
+**Surefire reports** target/surefire-reports 
+
+**Coverage Html Report:** target/jacoco-ut/index.html
+
+### Behavior-driven development Test cases
+You can find *Behavior-driven development(BDD)* cases under package *bdd* and feature files under test resources
+
+Cucumber is used to implement BDD
+#### To run BDD test cases please run:
+~~~shell
+mvn clean verify -P integration-test
+~~~
+**Coverage Report:** target/coverage-reports/jacoco-ut.exec
+
+**Failsafe reports** target/failsafe-reports
+
+**Coverage Html Report:** target/site/jacoco-it/index.html
+
+## Code Coverage
+
+### Intellij Idea Code Coverage
+
+[![Coverage screenshot](screenshots/TestCoverage.JPG)](screenshots/TestCoverage.JPG)
+
+* Covered 100.0% classes
+* Covered 94% lines
+
+### Sonar Code coverage
+[![Coverage screenshot](screenshots/sonar_code_coverage.JPG)](screenshots/sonar_code_coverage.JPG)
+
+* 86.8 Test coverage 
+* Overall 21 unit test cases.
+* Overall 34 BDD cases.
+* **ZERO** bugs
+* **ZERO** Vulnerablities
+* **ZERO** Code smells
+* **ZERO** Code duplication
+# [Question](QUESTION.md)
