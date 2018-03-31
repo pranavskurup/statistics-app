@@ -13,8 +13,10 @@ import java.time.Duration;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
@@ -35,6 +37,7 @@ public class BDDStepDoLoad {
 
     @Then("^Do load test$")
     public void do_load_test() throws InterruptedException {
+        CountDownLatch lock = new CountDownLatch(1);
         AtomicInteger atomicInteger = new AtomicInteger();
         ExecutorService executorService = Executors.newFixedThreadPool(25);
         int numberOfThreads = 20;
@@ -55,7 +58,7 @@ public class BDDStepDoLoad {
         for (int i = 0; i < numberOfThreads; i++) {
             executorService.execute(producer);
         }
-        Thread.sleep(20000);
+        lock.await(20, TimeUnit.SECONDS);
         EntityExchangeResult<HashMap> result = client.get().uri("/statistics").accept(MediaType.APPLICATION_JSON)
                 .exchange()
                 .expectHeader().contentType(MediaType.APPLICATION_JSON_UTF8)

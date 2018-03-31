@@ -6,14 +6,12 @@ import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import cucumber.runtime.java.StepDefAnnotation;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Assert;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.boot.web.reactive.context.AnnotationConfigReactiveWebApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -23,6 +21,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Pranav S Kurup on 3/29/2018.
@@ -46,12 +45,8 @@ public class BDDStepSpringStartup {
                         .sources(Application.class, SpringTestConfig.class);
         applicationContext = appBuilder.run();
         applicationContext.start();
-       /* applicationContext=new AnnotationConfigReactiveWebApplicationContext();
-        applicationContext.register(Application.class, SpringTestConfig.class);
-        applicationContext.refresh();*/
-        System.out.println();
-      CountDownLatch countDownLatch = applicationContext.getBean(CountDownLatch.class);
-      countDownLatch.await();
+        CountDownLatch countDownLatch = applicationContext.getBean(CountDownLatch.class);
+        countDownLatch.await(40, TimeUnit.SECONDS);
     }
 
 
